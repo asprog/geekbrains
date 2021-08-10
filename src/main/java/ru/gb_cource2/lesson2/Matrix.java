@@ -3,7 +3,7 @@ package ru.gb_cource2.lesson2;
 public class Matrix {
     public static void main(String[] args)  {
         try {
-            System.out.println(printMatrix(new String[][]{{"1","2","3","4"},{"1","2","3","4"},{"1","2","3","4"},{"1","2","3","4"}}));
+            System.out.printf("Сумма: %d",printMatrix(new String[][]{{"1","2","3","4"},{"1","2","3","4"},{"1","2","3","4"},{"1","2","3","4"}}));
         } catch (MyArraySizeException | MyArrayDataException e) {
             e.printStackTrace();
         }

@@ -28,9 +28,8 @@ public class AppData {
 
     @Override
     public String toString() {
-        StringBuilder matrix = new StringBuilder(String.format("header: %s" ,Arrays.toString(header)))
-                .append("\n");
-        matrix.append("data:\n");
+        StringBuilder matrix = new StringBuilder(String.format("header: %s\n" ,Arrays.toString(header)))
+                .append("data:\n");
         for(int i = 0; i < data.length;i++){
             matrix
                     .append(Arrays.toString(data[i]))

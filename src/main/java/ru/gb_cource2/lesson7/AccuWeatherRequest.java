@@ -1,22 +1,21 @@
-package ru.gb_cource2.lesson6;
+package ru.gb_cource2.lesson7;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import ru.gb_cource2.lesson6.accuWeather.AccuWeatherClass;
-import ru.gb_cource2.lesson6.accuWeather.RequestParam;
+import ru.gb_cource2.lesson7.accuWeather.AccuWeatherClass;
+import ru.gb_cource2.lesson7.accuWeather.DailyForecast;
+import ru.gb_cource2.lesson7.accuWeather.RequestParam;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.Scanner;
 
 public class AccuWeatherRequest {
     public static void main(String[] args) {
-        AccuWeatherRequest accRequest = new  AccuWeatherRequest();
+        AccuWeatherRequest accRequest = new AccuWeatherRequest();
         accRequest.request();
 
     }
@@ -51,7 +50,7 @@ public class AccuWeatherRequest {
             }
             System.out.println(result);
 
-         //   typeOfObjectsList = new TypeToken<AccuWeatherClass>() {}.getType();
+            accuWeatherPrint(new Gson().fromJson(result,AccuWeatherClass.class));
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -65,5 +64,16 @@ public class AccuWeatherRequest {
         }
        // return new Gson().fromJson(result, typeOfObjectsList);
 
+    }
+
+    private void accuWeatherPrint(AccuWeatherClass accuWeather) {
+        System.out.println("city: Moscow");
+        for(DailyForecast dailyForecast : accuWeather.getDailyForecasts()) {
+           System.out.println("date: " + dailyForecast.getDate()
+                   + " IconPhrase: " + dailyForecast.getDay().getIconPhrase()
+                   + " temp min: " + dailyForecast.getTemperature().getMinimum().getValue() + "C"
+                   + " temp max: " + dailyForecast.getTemperature().getMaximum().getValue() + "C"
+           );
+        }
     }
 }
